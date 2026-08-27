@@ -1,8 +1,8 @@
-  GNU nano 6.2                                                                               Jenkinsfile                                                                                         
 pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 git credentialsId: 'github-token',
@@ -20,8 +20,11 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh 'sonar-scanner'
+                script {
+                    def scannerHome = tool 'SonarScanner'
+                    withSonarQubeEnv('sonarqube') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
@@ -34,7 +37,3 @@ pipeline {
         }
     }
 }
-
-
-
-
