@@ -1,3 +1,4 @@
+  GNU nano 6.2                                                                               Jenkinsfile                                                                                         
 pipeline {
     agent any
 
@@ -33,3 +34,7 @@ pipeline {
         }
     }
 }
+
+
+
+
